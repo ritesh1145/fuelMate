@@ -1,28 +1,20 @@
-import React from "react";
-import { StyleSheet } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
-import LoginScreen from "./src/Screens/LoginScreen";
-import SignupScreen from "./src/Screens/SignupScreen";
-
-const Stack = createNativeStackNavigator();
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { AuthProvider } from './src/context/AuthContext';
+import RootNavigator from './src/navigation/RootNavigator';
+import { StatusBar } from 'react-native';
+import { colors } from './src/constants/theme';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false, // hide default header
-        }}
-      >
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Signup" component={SignupScreen} />
-      </Stack.Navigator>
+      <AuthProvider>
+        <StatusBar barStyle="dark-content" backgroundColor={colors.background} />
+        <RootNavigator />
+      </AuthProvider>
     </NavigationContainer>
   );
 };
 
 export default App;
 
-const styles = StyleSheet.create({});

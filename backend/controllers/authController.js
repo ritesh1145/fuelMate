@@ -9,7 +9,7 @@ const { generateToken } = require('../utils/tokenUtils.js');
  * @access  Public
  */
 const registerUser = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, phone, role, licenseNumber, vehicleNumber, vehicleType, address, city, state, status } = req.body;
 
   try {
     // Check if user already exists
@@ -19,13 +19,26 @@ const registerUser = async (req, res) => {
       return res.status(400).json({ message: 'User already exists' });
     }
 
-    // Create a new user instance
-    const user = await User.create({
+    // Create user data object
+    const userData = {
       name,
       email,
       password,
-      role: 'customer', // Default role for sign-ups from the customer app
-    });
+      role: role || 'customer',
+    };
+
+    // Add optional fields if provided
+    if (phone) userData.phone = phone;
+    if (licenseNumber) userData.licenseNumber = licenseNumber;
+    if (vehicleNumber) userData.vehicleNumber = vehicleNumber;
+    if (vehicleType) userData.vehicleType = vehicleType;
+    if (address) userData.address = address;
+    if (city) userData.city = city;
+    if (state) userData.state = state;
+    if (status) userData.status = status;
+
+    // Create a new user instance
+    const user = await User.create(userData);
 
     // If user is created successfully, send back user info and a token
     if (user) {
@@ -74,4 +87,3 @@ const loginUser = async (req, res) => {
 };
 
 module.exports = { registerUser, loginUser };
-

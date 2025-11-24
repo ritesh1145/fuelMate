@@ -1,15 +1,17 @@
 // Centralized theme file for consistent styling
 export const colors = {
-  primary: '#2ECC71', // A fresh, modern green
-  secondary: '#3498DB', // A complementary blue
-  background: '#f8f5f5ff', // A deep, professional slate blue
+  primary: '#2ECC71', // Fresh, vibrant green
+  secondary: '#3498DB', // Complementary blue
+  background: '#F5F7FA', // Light grey background
   white: '#FFFFFF',
   black: '#000000',
-  textPrimary: '#2f7b8eff', // Light text for dark background
-  textSecondary: '#BDC3C7', // A softer grey for subtitles
+  textPrimary: '#2C3E50', // Dark blue-grey for primary text
+  textSecondary: '#7F8C8D', // Medium grey for secondary text
   success: '#27AE60',
   error: '#E74C3C',
-  border: '#34495E', // A border color that works with the dark theme
+  warning: '#F39C12',
+  border: '#E0E0E0', // Light border color
+  cardShadow: '#000000',
 };
 
 export const spacing = {

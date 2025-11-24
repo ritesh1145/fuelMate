@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors, spacing, typography } from '../../constants/theme';
 import Button from '../../components/common/Button';
-import { ROUTES } from '../../constants/routes';
+import ROUTES from '../../constants/routes'; // Corrected import
 
 const OrderConfirmationScreen = ({ route, navigation }) => {
   const { orderDetails } = route.params;
@@ -26,7 +26,13 @@ const OrderConfirmationScreen = ({ route, navigation }) => {
         </View>
         <View style={styles.detailRow}>
             <Text style={styles.detailLabel}>Total Amount:</Text>
-            <Text style={styles.detailValue}>₹{orderDetails.total}</Text>
+            {/* CORRECTED: Changed orderDetails.total to orderDetails.totalAmount */}
+            <Text style={styles.detailValue}>₹{orderDetails.totalAmount.toFixed(2)}</Text>
+        </View>
+         <View style={styles.detailRow}>
+            <Text style={styles.detailLabel}>Order ID:</Text>
+            {/* Added Order ID from the real object */}
+            <Text style={styles.detailValue}>#{orderDetails._id.slice(-6)}</Text>
         </View>
       </View>
 
@@ -61,7 +67,7 @@ const styles = StyleSheet.create({
         marginBottom: spacing.xlarge,
     },
     card: {
-        backgroundColor: colors.white,
+        backgroundColor: colors.border, // Use a slightly different background
         borderRadius: 12,
         padding: spacing.large,
         width: '100%',
@@ -76,12 +82,16 @@ const styles = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
         marginBottom: spacing.large,
-        color: colors.secondary
+        color: colors.textPrimary, // Changed from secondary
     },
     detailRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginBottom: spacing.medium,
+        // Add a light border for separation
+        borderBottomWidth: 1,
+        borderBottomColor: 'rgba(236, 240, 241, 0.1)',
+        paddingBottom: spacing.medium,
     },
     detailLabel: {
         ...typography.body,

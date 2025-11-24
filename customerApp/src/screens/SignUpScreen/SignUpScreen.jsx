@@ -11,17 +11,18 @@ const SignUpScreen = ({ navigation }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('');
   const [loading, setLoading] = useState(false);
   const { signUp } = useAuth();
 
   const handleSignUp = async () => {
-    if (!name || !email || !password) {
+    if (!name || !email || !password || !phone) {
       Alert.alert('Error', 'Please fill in all fields.');
       return;
     }
     setLoading(true);
     try {
-      await signUp(name, email, password);
+      await signUp(name, email, password, phone);
     } catch (error) {
       Alert.alert('Sign Up Failed', error.message);
     } finally {
@@ -53,6 +54,13 @@ const SignUpScreen = ({ navigation }) => {
         onChangeText={setEmail}
         keyboardType="email-address"
         autoCapitalize="none"
+      />
+      <TextInput
+        label="Phone Number"
+        placeholder="Enter your phone number"
+        value={phone}
+        onChangeText={setPhone}
+        keyboardType="phone-pad"
       />
       <TextInput
         label="Password"

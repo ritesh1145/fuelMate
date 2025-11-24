@@ -19,11 +19,50 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    phone: {
+      type: String,
+      required: false,
+    },
+    profilePicture: {
+      type: String,
+      required: false,
+      default: null,
+    },
     role: {
       type: String,
       required: true,
-      enum: ['customer', 'driver'],
+      enum: ['customer', 'driver', 'admin'],
       default: 'customer',
+    },
+    // Driver-specific fields
+    licenseNumber: {
+      type: String,
+      required: false,
+    },
+    vehicleNumber: {
+      type: String,
+      required: false,
+    },
+    vehicleType: {
+      type: String,
+      required: false,
+    },
+    address: {
+      type: String,
+      required: false,
+    },
+    city: {
+      type: String,
+      required: false,
+    },
+    state: {
+      type: String,
+      required: false,
+    },
+    status: {
+      type: String,
+      enum: ['pending', 'approved', 'rejected', 'active', 'inactive'],
+      default: 'active',
     },
   },
   {

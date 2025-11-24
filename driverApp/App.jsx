@@ -1,14 +1,19 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { AuthProvider } from './src/context/authContext';
+import RootNavigator from './src/navigation/RootNavigator';
+import { StatusBar } from 'react-native';
+import { colors } from './src/constants/theme';
 
-const fuelMate = () => {
+const App = () => {
   return (
-    <View>
-      <Text>fuelMate</Text>
-    </View>
-  )
-}
+    <NavigationContainer>
+      <AuthProvider>
+        <StatusBar barStyle="light-content" backgroundColor={colors.background} />
+        <RootNavigator />
+      </AuthProvider>
+    </NavigationContainer>
+  );
+};
 
-export default fuelMate
-
-const styles = StyleSheet.create({})
+export default App;

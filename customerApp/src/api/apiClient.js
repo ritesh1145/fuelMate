@@ -1,10 +1,10 @@
 import { Alert } from 'react-native';
 
 // --- CRITICAL STEP ---
-// For Android Emulator: Use 10.0.2.2 to access host machine's localhost
-// For Physical Device: Use your computer's IP address (e.g., 192.168.x.x)
-// Your backend server must be running on port 5000!
-const API_URL = 'http://10.0.2.2:5000'; // Android Emulator
+// For emulator testing it's more reliable to use 127.0.0.1 with
+// `adb reverse tcp:5000 tcp:5000` so the device's localhost maps to the host.
+// Alternatively you can keep 10.0.2.2 if you prefer.
+const API_URL = 'http://127.0.0.1:5000'; // Use with `adb reverse` for emulator
 
 /**
  * A helper function for making API requests.

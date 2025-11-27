@@ -84,6 +84,9 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        // Allow cleartext HTTP for emulator/localhost API (10.0.2.2)
+        // This sets the manifest placeholder used in AndroidManifest.xml
+        manifestPlaceholders = [ usesCleartextTraffic: true ]
     }
     signingConfigs {
         debug {
@@ -103,6 +106,8 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            // Ensure cleartext traffic is allowed in release for emulator/local testing
+            manifestPlaceholders = [ usesCleartextTraffic: true ]
         }
     }
 }
